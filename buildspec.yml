@@ -7,17 +7,7 @@ phases:
       - npm i 
   build:
     commands:
-      - echo Build started on `date`
-      # install lambda dependecy, may be do it using venv
-      - pip install -r src/lambda/requirements.txt -t src/lambda/
-      - zip -r src/lambda/demo_lambda.zip src/lambda/
-      - npm install -g aws-cdk
-      - cdk bootstrap
-      - cdk synth
-  post_build:
-    commands:
-      - echo Build completed on `date`
-      - zip -r artifacts.zip cdk.out
+      - bash scripts/deploy.sh
 artifacts:
   files:
     - artifacts.zip
