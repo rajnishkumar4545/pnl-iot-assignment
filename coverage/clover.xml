@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1691429024818" clover="3.2.0">
+  <project timestamp="1691429024819" name="All files">
+    <metrics statements="39" coveredstatements="38" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="11" elements="51" coveredelements="49" complexity="0" loc="39" ncloc="39" packages="2" files="3" classes="3"/>
+    <package name="lib">
+      <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="cdk-demo-project-stack.ts" path="C:\Raj_Proj\pnl\cdk-demo-project\cdk-demo-project\lib\cdk-demo-project-stack.ts">
+        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="lib.constructs">
+      <metrics statements="30" coveredstatements="29" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="10"/>
+      <file name="dynamodb.ts" path="C:\Raj_Proj\pnl\cdk-demo-project\cdk-demo-project\lib\constructs\dynamodb.ts">
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
+      </file>
+      <file name="lambdas.ts" path="C:\Raj_Proj\pnl\cdk-demo-project\cdk-demo-project\lib\constructs\lambdas.ts">
+        <metrics statements="20" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="7"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="77" count="1" type="stmt"/>
+        <line num="86" count="1" type="stmt"/>
+        <line num="107" count="1" type="stmt"/>
+        <line num="108" count="1" type="stmt"/>
+        <line num="109" count="1" type="stmt"/>
+        <line num="142" count="1" type="stmt"/>
+        <line num="153" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
