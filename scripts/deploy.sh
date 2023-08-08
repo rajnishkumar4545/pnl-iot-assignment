@@ -17,8 +17,8 @@ if [[ $BUILD == 1 ]]; then
     echo Build completed on `date`
 elif [[ $BUILD == 0 ]]; then
     echo Deploy started in $(date)
-    # cdk deploy --require-approval never --app "cdk.out"
-    cdk deploy -require-approval never
+    cdk deploy --require-approval never --app "cdk.out"
+    # cdk deploy -require-approval never
     echo Deploy completed on $(date)
 else
     echo "PANIK : BUILD variable not set"
