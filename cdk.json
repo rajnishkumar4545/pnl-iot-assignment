@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node --prefer-ts-exts bin/cdk-demo-project.ts",
+  "app": "npx ts-node --prefer-ts-exts bin/pnl_iot_assignment.ts",
   "watch": {
     "include": [
       "**"
@@ -39,7 +39,6 @@
     "@aws-cdk/aws-iam:importedRoleStackSafeDefaultPolicyName": true,
     "@aws-cdk/aws-s3:serverAccessLogsUseBucketPolicy": true,
     "@aws-cdk/aws-route53-patters:useCertificate": true,
-    "@aws-cdk/customresources:installLatestAwsSdkDefault": false,
-    "sns_topic_arn" : "arn:aws:sns:ap-south-1:189351993567:demo-sns-topic"
+    "@aws-cdk/customresources:installLatestAwsSdkDefault": false
   }
 }

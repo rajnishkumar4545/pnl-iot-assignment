@@ -9,16 +9,19 @@ import {
 import { Construct } from 'constructs';
 import { join } from 'path';
 import path from 'path';
-import { PythonFunction } from '@aws-cdk/aws-lambda-python-alpha';
 
 
   export interface CommonLambdaProps extends Partial<lambda.FunctionProps> {
     readonly dynamodbReferenceTableName: string;
     readonly dynamodbVehicleTableName : string;
     readonly dynamodbDeviceTableName : string;
+    readonly lambdaFunctionName : string;
+    readonly lambdaLayerName: string;
+    readonly lambdaAliasName: string;
+    readonly snsTopicArn : string;
   }
 
-  export default class DemoPocLambda extends Construct {
+  export default class IotEventsHandlerLambda extends Construct {
     
     private readonly lambdaFunction: lambda.Function;
     
@@ -54,7 +57,7 @@ import { PythonFunction } from '@aws-cdk/aws-lambda-python-alpha';
           }),
           new iam.PolicyStatement({
             effect: iam.Effect.ALLOW,
-            resources: [ this.node.tryGetContext("sns_topic_arn")],
+            resources: [ this.commonProps.snsTopicArn ],
             actions: [
               "sns:Publish",
               "sns:ListTopics"
@@ -64,12 +67,11 @@ import { PythonFunction } from '@aws-cdk/aws-lambda-python-alpha';
     }
   
     private createLambdaLayer() {
-      return new lambda.LayerVersion(this, 'cdkDemoLambdaLayer', {
-        layerVersionName: 'cdk-demo-lambda-layer',
-        // code: lambda.Code.fromAsset('src/lambda_layer'),
+      return new lambda.LayerVersion(this, 'eventsHandlerLambdaLayer', {
+        layerVersionName: this.commonProps.lambdaLayerName,
         code: lambda.Code.fromAsset(path.join(__dirname, '../../src/lambda_layer')),
         compatibleArchitectures: [lambda.Architecture.ARM_64],
-        license: 'Learning Purpose',
+        license: 'Assignment Purpose',
       });
     }
     
@@ -78,22 +80,22 @@ import { PythonFunction } from '@aws-cdk/aws-lambda-python-alpha';
             REFERENCE_TABLE_NAME : this.commonProps.dynamodbReferenceTableName,
             VEHICLE_TABLE_NAME : this.commonProps.dynamodbVehicleTableName,
             DEVICE_TABLE_NAME : this.commonProps.dynamodbDeviceTableName,
-            SNS_ARN: this.node.tryGetContext("sns_topic_arn")
+            SNS_ARN: this.commonProps.snsTopicArn
         };
     }
 
     private createLambdaFunction(): lambda.Function {
       const lambdaFunction = new lambda.Function(
         this,
-        'DemoLambda',
+        'EventsHandlerLambda',
         {
-          functionName: 'demo-lambda-function',
-          description: 'Demo Lambda Function',
+          functionName: this.commonProps.lambdaFunctionName,
+          description: 'IoT Events Handler Lambda Function',
           code: lambda.Code.fromAsset(join(__dirname, '../../src/lambda'), {
-            exclude: ['**', '!demo_lambda.py'],
+            exclude: ['**', '!iot_events_handler.py'],
           }),
-          handler: 'demo_lambda.lambda_handler',
-          timeout: Duration.minutes(10),
+          handler: 'iot_events_handler.lambda_handler',
+          timeout: Duration.minutes(1),
           tracing: lambda.Tracing.ACTIVE,
           logRetention: logs.RetentionDays.ONE_WEEK,
           runtime: lambda.Runtime.PYTHON_3_9,
@@ -108,32 +110,6 @@ import { PythonFunction } from '@aws-cdk/aws-lambda-python-alpha';
       this.createLambdaAlias(lambdaFunction, lambdaVersion);
       return lambdaFunction;
     }
-
-    // private createLambdaFunction(): PythonFunction {
-    //   const lambdaFunction = new PythonFunction(
-    //     this,
-    //     'DemoLambda',
-    //     {
-    //       functionName: 'demo-lambda-function',
-    //       description: 'Demo Lambda Function',
-    //       entry: path.resolve(__dirname, '../../src/lambda/'),
-    //       index: 'demo_lambda.py',
-    //       handler: 'lambda_handler',
-    //       timeout: Duration.minutes(10),
-    //       tracing: lambda.Tracing.ACTIVE,
-    //       logRetention: logs.RetentionDays.ONE_WEEK,
-    //       runtime: lambda.Runtime.PYTHON_3_9,
-    //       architecture: lambda.Architecture.ARM_64,
-    //       environment: this.getLambdaEnvVariable(),
-    //       layers: [this.createLambdaLayer()],
-    //       initialPolicy: this.addLambdaPermissions(),
-    //     },
-    //   );
-    
-    //   const lambdaVersion = this.createLambdaVersion(lambdaFunction);
-    //   this.createLambdaAlias(lambdaFunction, lambdaVersion);
-    //   return lambdaFunction;
-    // }
     
     private createLambdaAlias(
       lambdaFunction: lambda.Function,
@@ -141,9 +117,9 @@ import { PythonFunction } from '@aws-cdk/aws-lambda-python-alpha';
     ) {
       return new lambda.Alias(
         this.scope,
-        'demoLambdaAlias',
+        'eventsHandlerAlias',
         {
-          aliasName: 'demo-lambda-alias',
+          aliasName: this.commonProps.lambdaAliasName,
           version: lambdaVersion,
         },
       );
@@ -152,7 +128,7 @@ import { PythonFunction } from '@aws-cdk/aws-lambda-python-alpha';
     private createLambdaVersion(lambdaFunction: lambda.Function) {
       return new lambda.Version(
         this.scope,
-        'demoLambdaVersionId',
+        'eventsHandlerLambdaVersionId',
         {
           lambda: lambdaFunction,
         },

@@ -2,11 +2,14 @@ if [[ $BUILD == 1 ]]; then
     echo Build started on $(date)
     # install lambda dependecy, may be do it using venv
     # pip install -r src/lambda/requirements.txt -t src/lambda/
+    pip install pytest
     pip install -r src/lambda_layer/requirements.txt -t src/lambda_layer/python
-    zip -r src/lambda/demo_lambda.zip src/lambda/
+    # zip -r src/lambda/demo_lambda.zip src/lambda/
     cdk bootstrap
     cdk synth
-    zip -r artifacts.zip cdk.out
+    npm run test
+    python -m pytest test/lambda/test_demo_lambda.py
+    # zip -r artifacts.zip cdk.out
     echo Build completed on `date`
 elif [[ $BUILD == 0 ]]; then
     echo Deploy started in $(date)
