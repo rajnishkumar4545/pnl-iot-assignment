@@ -12,7 +12,7 @@ phases:
       - bash scripts/deploy.sh
 artifacts:
   files:
-    - cdk.out/*
+    - cdk.out/**/*
     - buildspec.yml
     - package.json
     - scripts/deploy.sh
