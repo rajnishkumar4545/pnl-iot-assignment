@@ -7,6 +7,7 @@ if [[ $BUILD == 1 ]]; then
     # zip -r src/lambda/demo_lambda.zip src/lambda/
     cdk bootstrap
     cdk synth
+    npm test -- -u
     npm run test
     pip install -r test/requirements.txt
     python -m pytest test/lambda/test_demo_lambda.py
