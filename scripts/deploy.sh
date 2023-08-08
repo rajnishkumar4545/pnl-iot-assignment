@@ -21,5 +21,5 @@ elif [[ $BUILD == 0 ]]; then
     # cdk deploy -require-approval never
     echo Deploy completed on $(date)
 else
-    echo "PANIK : BUILD variable not set"
+    echo "ERROR : BUILD variable not set"
 fi

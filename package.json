@@ -5,15 +5,27 @@
     "pnl_iot_assignment": "bin/pnl_iot_assignment.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --project tsconfig.json && :",
     "watch": "tsc -w",
-    "test": "jest",
-    "cdk": "cdk"
+    "test": "jest --coverage --verbose && npm run pytest",
+    "cdk": "cdk",
+    "cdk:synth": "cdk synth",
+    "test:update": "jest -u --coverage --verbose",
+    "lint": "eslint . --cache --ext .ts --color --fix",
+    "prepare": "husky install"
   },
   "devDependencies": {
+    "@commitlint/cli": "17.6.5",
+    "@commitlint/config-conventional": "17.6.5",
     "@types/jest": "^29.5.3",
     "@types/node": "^18.11.18",
+    "@typescript-eslint/eslint-plugin": "6.3.0",
+    "@typescript-eslint/parser": "6.3.0",
     "aws-cdk": "2.61.1",
+    "eslint": "8.42.0",
+    "eslint-import-resolver-typescript": "3.5.5",
+    "eslint-plugin-import": "2.27.5",
+    "husky": "^8.0.3",
     "jest": "^29.3.1",
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
@@ -23,5 +35,18 @@
     "aws-cdk-lib": "2.61.1",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.21"
+  },
+  "lint-staged": {
+    "**/*.{ts, py}": [
+      "npm run test"
+    ],
+    "*.ts": [
+      "npm run build"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
