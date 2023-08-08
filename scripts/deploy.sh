@@ -10,7 +10,7 @@ if [[ $BUILD == 1 ]]; then
     npm test -- -u
     npm run test
     pip install -r test/requirements.txt
-    python -m pytest test/lambda/test_demo_lambda.py
+    python -m pytest test/lambda/test_iot_events_handler.py
     # zip -r artifacts.zip cdk.out
     echo Build completed on `date`
 elif [[ $BUILD == 0 ]]; then
