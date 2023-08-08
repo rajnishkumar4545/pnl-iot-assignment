@@ -7,8 +7,10 @@ if [[ $BUILD=1 ]]; then
     cdk synth
     zip -r artifacts.zip cdk.out
     echo Build completed on `date`
-else
+elif [[ $BUILD=0 ]] then
     echo Deploy started in $(date)
     ls -laRt
     echo Deploy completed on $(date)
+else
+    echo "PANIK : BUILD variable not set"
 fi
