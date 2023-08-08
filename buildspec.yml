@@ -14,4 +14,4 @@ artifacts:
     - cdk.out
     - buildspec.yml
     - package.json
-    - scripts
+    - scripts/deploy.sh
