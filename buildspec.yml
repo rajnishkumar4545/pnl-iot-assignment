@@ -5,7 +5,6 @@ phases:
     runtime-versions:
       python: python3.9
       nodejs: nodejs:18
-  pre_build:
     commands:
       # install node packages
       - npm i 
