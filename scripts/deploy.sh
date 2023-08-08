@@ -8,6 +8,7 @@ if [[ $BUILD == 1 ]]; then
     cdk bootstrap
     cdk synth
     npm run test
+    pip install -r test/requirements.txt
     python -m pytest test/lambda/test_demo_lambda.py
     # zip -r artifacts.zip cdk.out
     echo Build completed on `date`
