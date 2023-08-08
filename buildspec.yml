@@ -6,7 +6,6 @@ phases:
       # install node packages
       - npm i 
       - npm install -g aws-cdk
-      - printenv
   build:
     commands:
       - bash scripts/deploy.sh
