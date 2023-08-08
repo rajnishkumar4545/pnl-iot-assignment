@@ -10,7 +10,7 @@ if [[ $BUILD == 1 ]]; then
     echo Build completed on `date`
 elif [[ $BUILD == 0 ]]; then
     echo Deploy started in $(date)
-    ls -laRt
+    cdk deploy --app 'cdk.out/' pnl-iot-assignment
     echo Deploy completed on $(date)
 else
     echo "PANIK : BUILD variable not set"
