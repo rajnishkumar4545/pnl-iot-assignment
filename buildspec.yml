@@ -12,3 +12,4 @@ artifacts:
   files:
     - cdk.out
     - buildspec.yml
+    - package.json
