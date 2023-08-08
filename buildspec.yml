@@ -3,8 +3,8 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: python3.9
-      nodejs: nodejs:18
+      python: python: 3.9
+      nodejs: nodejs: 18
     commands:
       # install node packages
       - npm i 
