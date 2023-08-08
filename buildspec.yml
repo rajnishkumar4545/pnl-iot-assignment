@@ -10,4 +10,5 @@ phases:
       - bash scripts/deploy.sh
 artifacts:
   files:
-    - artifacts.zip
+    - cdk.out
+    - buildspec.yml
