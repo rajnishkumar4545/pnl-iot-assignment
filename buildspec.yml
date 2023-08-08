@@ -12,10 +12,12 @@ phases:
       - pip install -r src/lambda/requirements.txt -t src/lambda/
       - zip -r src/lambda/demo_lambda.zip src/lambda/
       - npm install -g aws-cdk
+      - cdk bootstrap
       - cdk synth
   post_build:
     commands:
       - echo Build completed on `date`
+      - zip -r artifacts.zip cdk.out
 artifacts:
   files:
-    - 
+    - artifacts.zip
