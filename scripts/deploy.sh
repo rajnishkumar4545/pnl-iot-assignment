@@ -1,3 +1,5 @@
+#!/bin/bash
+set -e
 if [[ $BUILD == 1 ]]; then
     echo Build started on $(date)
     # install lambda dependecy, may be do it using venv
