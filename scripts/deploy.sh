@@ -1,7 +1,8 @@
 if [[ $BUILD=1 ]]; then
     echo Build started on $(date)
     # install lambda dependecy, may be do it using venv
-    pip install -r src/lambda/requirements.txt -t src/lambda/
+    # pip install -r src/lambda/requirements.txt -t src/lambda/
+    pip install -r src/lambda_layer/requirements.txt -t src/lambda_layer/python
     zip -r src/lambda/demo_lambda.zip src/lambda/
     cdk bootstrap
     cdk synth
