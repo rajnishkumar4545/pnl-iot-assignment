@@ -213,6 +213,7 @@ exports[`pnl assessment stack tests Should generate stack as expected by snapsho
             "REFERENCE_TABLE_NAME": {
               "Ref": "dynamodbRefTablevehicledevicemappingtabledynamodbLogicalIdFA79C9F6",
             },
+            "SNS_ARN": "arn:aws:sns:ap-south-1:189351993567:demo-sns-topic",
             "VEHICLE_TABLE_NAME": {
               "Ref": "dynamodbVehicleTablevehicletabledynamodbLogicalId917C0593",
             },
@@ -460,7 +461,7 @@ exports[`pnl assessment stack tests Should generate stack as expected by snapsho
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "50a672eda74aa285685e2ce72170b24e94c730d4a981b0382fe8c0c7bff7ab4d.zip",
+          "S3Key": "a966740851c2f8630962d4b5ca81f388ab2e0fb74b57a141d42e6808f8b3cebe.zip",
         },
         "LayerName": "events-handler-lambda-layer",
         "LicenseInfo": "Assignment Purpose",
