@@ -5,6 +5,7 @@ phases:
     commands:
       # install node packages
       - npm i 
+      - npm install -g aws-cdk
   build:
     commands:
       - bash scripts/deploy.sh
@@ -13,3 +14,4 @@ artifacts:
     - cdk.out
     - buildspec.yml
     - package.json
+    - scripts
